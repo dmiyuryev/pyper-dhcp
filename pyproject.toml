@@ -1,0 +1,30 @@
+[project]
+name = "pyper-dhcp"
+dynamic = ["version"]
+description = "A small asynchronous DHCPv4 server"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "loguru>=0.7.3,<1",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]
+
+[tool.pyright]
+pythonVersion = "3.14"
+include = ["src", "tests"]
+extraPaths = ["src"]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "strict"

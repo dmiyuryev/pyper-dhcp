@@ -1,0 +1,28 @@
+log_level = "INFO"
+log_format = "%m/%d/%Y %H:%M:%S"
+
+[server]
+# Port 67 needs matching privileges, for example CAP_NET_BIND_SERVICE.
+listen_address = "0.0.0.0"
+listen_port = 67
+
+# Maximum incoming packets processed per second (0 turns the limit off).
+max_packets_per_second = 200
+
+# The served IPv4 subnet. The pool must not include the network address, the
+# broadcast address, server_id or router.
+server_id = "192.168.50.1"
+subnet_mask = "255.255.255.0"
+pool_start = "192.168.50.100"
+pool_end = "192.168.50.200"
+lease_time = 86400
+router = "192.168.50.1"
+dns_servers = ["1.1.1.1", "8.8.8.8"]
+
+# A relative path is resolved from the directory of this TOML file.
+lease_file = "../db/leases.json"
+
+# Optional static assignments: MAC address = IP address from the pool.
+# Any MAC separator works: aa:bb:.., AA-BB-.. and aabb.ccdd.eeff are equivalent.
+[reservations]
+# "02:00:00:00:00:01" = "192.168.50.110"

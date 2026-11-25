@@ -1,0 +1,20 @@
+[Unit]
+Description=PyperDHCP asynchronous DHCPv4 server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/pyper-dhcp
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/pyper-dhcp/.venv/bin/python src/main.py
+Restart=on-failure
+RestartSec=5s
+TimeoutStopSec=15s
+
+
+[Install]
+WantedBy=multi-user.target
